@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Surprise 💘</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Segoe UI,sans-serif;
+  overflow:hidden;
+}
+
+/* LOGIN */
+#loginPage{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(to right,#ffdde1,#ee9ca7);
+}
+.loginBox{
+  background:white;
+  padding:30px;
+  width:330px;
+  text-align:center;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+input{
+  width:90%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+button{
+  padding:12px 20px;
+  border:none;
+  border-radius:15px;
+  cursor:pointer;
+  font-size:16px;
+}
+#errorMsg{color:red;margin-top:10px;}
+
+/* VALENTINE PAGE */
+#valentinePage{
+  display:none;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  position:relative;
+}
+.box{
+  background:white;
+  padding:35px 45px;
+  border-radius:25px;
+  text-align:center;
+  box-shadow:0 15px 30px rgba(0,0,0,0.25);
+  z-index:10;
+}
+#quote{
+  margin:15px 0;
+  color:#ff2f6d;
+  font-size:15px;
+  height:20px;
+}
+#yes{
+  background:#ff4d6d;
+  color:white;
+  margin-right:15px;
+}
+#no{
+  background:#ddd;
+  position:absolute;
+  left:50%;
+  top:250px;
+  transform:translateX(-50%);
+}
+
+/* FINAL PAGE */
+#finalPage{
+  display:none;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  color:white;
+  padding:20px;
+  overflow:hidden;
+}
+
+/* Hug Image */
+.hugImg{
+  width:180px;
+  border-radius:20px;
+  margin:15px 0;
+  image-rendering:auto;
+}
+
+/* Bottom Scroll I LOVE YOU */
+#scrollContainer{
+  position:absolute;
+  bottom:0;
+  height:120px;
+  overflow:hidden;
+}
+#scrollText{
+  font-size:22px;
+  animation:scrollUp 7s linear infinite;
+}
+@keyframes scrollUp{
+  0%{transform:translateY(100%);}
+  100%{transform:translateY(-100%);}
+}
+
+/* Floating Hearts */
+.heart{
+  position:absolute;
+  font-size:22px;
+  animation:float 6s linear infinite;
+}
+@keyframes float{
+  0%{transform:translateY(100vh);opacity:0;}
+  50%{opacity:1;}
+  100%{transform:translateY(-10vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 MUSIC -->
+<audio id="bgm" loop>
+  <source src="04 - Mental Manadhil.mp3" type="audio/mpeg">
+</audio>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage">
+  <div class="loginBox">
+    <h2>🔐 Secret Login</h2>
+
+    <input id="username" placeholder="What I order everytime out of the menu? 🍽️">
+    <input id="password" placeholder="My heart belongs to? ❤️">
+
+    <button onclick="checkLogin()" style="background:#ff4d6d;color:white;">
+      Login 💌
+    </button>
+
+    <div id="errorMsg"></div>
+  </div>
+</div>
+
+<!-- VALENTINE PAGE -->
+<div id="valentinePage">
+  <div class="box">
+    <h1>Thrishika 💕</h1>
+    <h2>Will you be my Valentine? 💘</h2>
+
+    <div id="quote"></div>
+
+    <button id="yes" onclick="yesClick()">Yes ❤️</button>
+    <button id="no">No 😜</button>
+  </div>
+</div>
+
+<!-- FINAL PAGE -->
+<div id="finalPage">
+  <h1>Yeah I know you would say yes ❤️😭🫣</h1>
+
+  <!-- ✅ PHOTO FIXED HERE -->
+  <img class="hugImg" src="hug_photo.jpg" alt="hug">
+
+  <p style="font-size:18px;line-height:1.6;">
+    I am the happiest person in the world Jillu 💋💋 <br>
+    I know you’re not excited about this because you are heartless 🤪😝 <br>
+    But you're already blushing 😳💖 <br><br>
+    Happy Valentine’s Day 💌 to my kanmaniii 🥹🫂🤌🏼
+  </p>
+  <p style="font-size:18px;line-height:1.6;">
+    I am your forever thalavali chlmmm💋💋🥹
+</p
+  
+  <div id="scrollContainer">
+    <div id="scrollText">
+      I love you ❤️<br>
+      I love you ❤️<br>
+      I love you ❤️<br>
+      I love you ❤️<br>
+      I love you ❤️<br>
+      I love you ❤️<br>
+    </div>
+  </div>
+</div>
+
+<script>
+/* 🎵 MUSIC START */
+let started=false;
+document.body.addEventListener("click",()=>{
+  if(!started){
+    document.getElementById("bgm").play();
+    started=true;
+  }
+});
+
+/* LOGIN */
+function checkLogin(){
+  let u=document.getElementById("username").value.trim().toLowerCase();
+  let p=document.getElementById("password").value.trim().toLowerCase();
+
+  if(u==="you" && p==="you"){
+    document.getElementById("loginPage").style.display="none";
+    document.getElementById("valentinePage").style.display="flex";
+  }else{
+    document.getElementById("errorMsg").innerHTML="Answer is always YOU 😌💖";
+  }
+}
+
+/* NO BUTTON FIXED + UNLIMITED QUOTES */
+const noBtn=document.getElementById("no");
+const quoteBox=document.getElementById("quote");
+
+const quotes=[
+  "Ayy no va? 🥺",
+  "Think again 😌💖",
+  "Harish heart break 💔",
+  "Pleaseeee 😭",
+  "Last chance da 😘"
+];
+let count=0;
+
+function moveNo(){
+  let x=Math.random()*(window.innerWidth-120);
+  let y=Math.random()*(window.innerHeight-120);
+  noBtn.style.left=x+"px";
+  noBtn.style.top=y+"px";
+}
+
+function noAction(){
+  quoteBox.innerText = quotes[count % quotes.length];
+  count++;
+  moveNo();
+}
+
+noBtn.addEventListener("click",noAction);
+noBtn.addEventListener("pointerenter",noAction);
+noBtn.addEventListener("touchstart",noAction);
+
+/* YES CLICK */
+function yesClick(){
+  document.getElementById("valentinePage").style.display="none";
+  document.getElementById("finalPage").style.display="flex";
+}
+
+/* FLOATING HEARTS ONLY FINAL PAGE */
+function createHeart(){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerText="💖";
+  h.style.left=Math.random()*100+"vw";
+
+  document.getElementById("finalPage").appendChild(h);
+
+  setTimeout(()=>h.remove(),6000);
+}
+setInterval(createHeart,800);
+</script>
+
+</body>
+  </html>
